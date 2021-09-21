@@ -81,7 +81,7 @@ Fixed			&Fixed::operator ++ () {
 	return *this;
 }
 
-Fixed			Fixed::operator ++ ( int value ) {
+Fixed			Fixed::operator ++ ( int ) {
 	Fixed buff(*this);
 
 	++(*this);
@@ -93,7 +93,7 @@ Fixed			&Fixed::operator -- () {
 	return *this;
 }
 
-Fixed			Fixed::operator -- ( int value ) {
+Fixed			Fixed::operator -- ( int ) {
 	Fixed buff(*this);
 
 	--(*this);

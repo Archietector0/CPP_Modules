@@ -42,13 +42,13 @@ class Fixed {
 		Fixed			&operator ++ ();
 
 //		post-increment
-		Fixed			operator ++ ( int value );
+		Fixed			operator ++ ( int );
 
 //		pre-decrement
 		Fixed			&operator -- ();
 
 //		post-decrement
-		Fixed			operator -- ( int value );
+		Fixed			operator -- ( int );
 
 
 		const Fixed		&min ( const Fixed &a, const Fixed &b );
