@@ -1,11 +1,11 @@
 .PHONY: all clean bonus fclean re
 
-NAME = fixed
+NAME = clapTrap
 
-HEADERS = Fixed.hpp
+HEADERS = ClapTrap.hpp
 
 SRC = main.cpp \
-	  Fixed.cpp
+	  ClapTrap.cpp
 
 CC = clang++
 

@@ -1,11 +1,13 @@
 .PHONY: all clean bonus fclean re
 
-NAME = fixed
+NAME = fragTrap
 
-HEADERS = Fixed.hpp
+HEADERS = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 
-SRC = main.cpp \
-	  Fixed.cpp
+SRC = main.cpp		\
+	  ClapTrap.cpp	\
+	  ScavTrap.cpp	\
+	  FragTrap.cpp
 
 CC = clang++
 
