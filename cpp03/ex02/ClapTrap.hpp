@@ -6,40 +6,29 @@
 
 class ClapTrap {
 	protected:
-		std::string		_name;
-		unsigned int	_hitpoints;
-		unsigned int	_energyPoints;
-		unsigned int	_attackDamage;
+		std::string     _name;
+		unsigned int    _hitpoints;
+		unsigned int    _energyPoints;
+		unsigned int    _attackDamage;
 
 	public:
+		ClapTrap        ();
+		~ClapTrap       ();
+		ClapTrap        ( const std::string& name );
+		ClapTrap        ( const ClapTrap &other );
 
-	// Con/De - structor
-		ClapTrap		();
-		ClapTrap		( std::string newName );
-		~ClapTrap		();
 
-	// Copy constructor
-		ClapTrap		( const ClapTrap &other );
+		ClapTrap        &operator = ( const ClapTrap &other );
 
-	// setter - methods
-		void			setName ( std::string newName );
-		void			setHitpoints ( unsigned int newHitpoints);
-		void			setEnergyPoints ( unsigned int newEnergyPoints );
-		void			setAttackDamage ( unsigned int newAttackDamage );
 
-	// getter - methods
-		std::string		getName ();
-		unsigned int	getHitpoints ();
-		unsigned int	getEnergyPoints ();
-		unsigned int	getAttackDamage ();
+		virtual void            attack ( std::string const & target );
+		virtual void            takeDamage ( unsigned int amount );
+		virtual void            beRepaired ( unsigned int amount );
 
-	// life-like - functions
-		void			attack ( std::string const &target );
-		void			takeDamage ( unsigned int amount );
-		void			beRepaired ( unsigned int amount );
+
+		void            		playerInfo ();
 };
 
-void ft_info ( ClapTrap &other );
 
 
 #endif

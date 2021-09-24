@@ -3,7 +3,7 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap {
+class ScavTrap : virtual public ClapTrap {
 
     private:
 
@@ -25,3 +25,8 @@ class ScavTrap : public ClapTrap {
 };
 
 #endif
+
+// ame (Parameter of constructor)
+// •Hitpoints (100)
+// •Energy points (50)
+// •attack damage (20)

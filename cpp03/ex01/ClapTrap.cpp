@@ -1,106 +1,79 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap	() : _name("None"), _hitpoints(10), _energyPoints(10), _attackDamage(0) {
-	std::cout << "ClapTrap default consturctor was called ! " << std::endl;
-	ft_info(*this);
+ClapTrap::ClapTrap () : _name("None"),
+                        _hitpoints(10),
+                        _energyPoints(10),
+                        _attackDamage(0) {
+    std::cout << "ClapTrap default constructor was called!" << std::endl;
+    playerInfo();
 }
 
-ClapTrap::ClapTrap	( std::string newName ) : _hitpoints(10), _energyPoints(10), _attackDamage(0) {
-	std::cout << "ClapTrap consturctor was called ! " << std::endl;
-	_name = newName;
-	ft_info(*this);
+ClapTrap::ClapTrap ( const std::string &name ) : _name(name),
+                                          _hitpoints(10),
+                                          _energyPoints(10),
+                                          _attackDamage(0) {
+    std::cout << "ClapTrap dop constructor was called!" << std::endl;
+    playerInfo();
 }
 
-ClapTrap::~ClapTrap	() {
-	std::cout << "ClapTrap desturctor was called ! " << std::endl;
+ClapTrap::~ClapTrap () {
+    std::cout << "ClapTrap default destructor was called!" << std::endl;
 }
 
-ClapTrap::ClapTrap	( const ClapTrap &other ) {
-	std::cout << "ClapTrap copy constructor was called ! " << std::endl;
-	this->_name = other._name;
-	this->_hitpoints = other._hitpoints;
-	this->_energyPoints = other._energyPoints;
-	this->_attackDamage = other._attackDamage;
-	ft_info(*this);
+ClapTrap::ClapTrap ( const ClapTrap &other ) {
+    std::cout << "ClapTrap COPY constructor was called!" << std::endl;
+    operator = (other);
 }
 
-// setter - methods
-
-void				ClapTrap::setName ( std::string newName ) {
-	this->_name = newName;
+ClapTrap &ClapTrap::operator = ( const ClapTrap &other ) {
+    std::cout << "ClapTrap assignation operator was called!" << std::endl;
+    this->_name = other._name;
+    this->_hitpoints = other._hitpoints;
+    this->_energyPoints = other._energyPoints;
+    this->_attackDamage = other._attackDamage;
+    playerInfo();
+    return *this;
 }
 
-void				ClapTrap::setHitpoints ( unsigned int newHitpoints ) {
-	if ( newHitpoints >= 0 && newHitpoints <= 100 )
-		this->_hitpoints = newHitpoints;
-	else {
-		std::cout << "ERROR: Invalid value of Hit Point, it must be  '0 <= HP <= 100'." << std::endl;
-		exit (0);
-	}
+void        ClapTrap::playerInfo () {
+    std::cout << "Name: " << _name << std::endl;
+    std::cout << "HitPoints: " << _hitpoints << std::endl;
+    std::cout << "EnergyPoints: " << _energyPoints << std::endl;
+    std::cout << "AttackDamage: " << _attackDamage << std::endl;
+
+    std::cout << "-------------------------------------" << std::endl;
 }
 
-void				ClapTrap::setEnergyPoints ( unsigned int newEnergyPoints ) {
-	if (newEnergyPoints < 0) {
-		std::cout << "ERROR: Invalid value of Energy Point, it must be  '0 <= EP <= 100'." << std::endl;
-		exit (0);
-	}
-	this->_energyPoints = newEnergyPoints;
+void            ClapTrap::attack ( std::string const & target ) {
+    std::cout << "ClapTrap " << this->_name
+              << " attack " << target << ", causing "
+              << this->_attackDamage << " points of damage!" << std::endl;
+    std::cout << "-------------------------------------" << std::endl;
 }
 
-void				ClapTrap::setAttackDamage ( unsigned int newAttackDamage ) {
-	if (newAttackDamage >= 0 && newAttackDamage <= 100)
-		this->_attackDamage = newAttackDamage;
-	else {
-		std::cout << "ERROR: Invalid value of Attack Damage, it must be  '0 <= AD <= 100'." << std::endl;
-		exit (0);
-	}
+void            ClapTrap::takeDamage ( unsigned int amount ) {
+    if (amount > 50000) {
+        std::cout << "Invalid value for damage. Please check!" << std::endl;
+        return;
+    } else if (amount > this->_hitpoints) {
+        this->_hitpoints = 0;
+        std::cout << this->_name << " take " << amount << " points of damage." << std::endl;
+
+        std::cout << this->_name << " is dead, you are fuc**ng murder!" << std::endl;
+    } else if (amount <= this->_hitpoints && amount >= 0) {
+        this->_hitpoints -= amount;
+        std::cout << this->_name << " take " << amount << " points of damage." << std::endl;
+
+        std::cout << this->_name << " say: OUCH WTF !?!?!" << std::endl;
+    }
+    playerInfo();
 }
 
-// getter - methods
+void            ClapTrap::beRepaired ( unsigned int amount ) {
+    std::cout << this->_name << " repaired " << amount << " points of HP." << std::endl;
+    if (amount >= 50000)
+        return;
+    this->_hitpoints += amount;
+    playerInfo();
 
-std::string 		ClapTrap::getName () {
-	return this->_name;
-}
-
-unsigned int		ClapTrap::getHitpoints () {
-	return this->_hitpoints;
-}
-
-unsigned int		ClapTrap::getEnergyPoints () {
-	return this->_energyPoints;
-}
-
-unsigned int		ClapTrap::getAttackDamage () {
-	return this->_attackDamage;
-}
-
-// life-like - functions
-
-void ClapTrap::attack ( std::string const &target ) {
-	std::cout << "ClapTrap " << this->getName()
-			  << " attack " << target
-			  << ", causing " << this->getAttackDamage()
-			  << " points of damage!" << std::endl;
-
-	std::cout << "----------------------------------------------------" << std::endl;
-}
-
-void ClapTrap::takeDamage ( unsigned int amount ) {
-	std::cout << this->getName() << " takes " << amount << " damage. " << this->getHitpoints() << " decreases on " << amount << " damage." << std::endl;
-	this->setHitpoints(this->getHitpoints() - amount);
-	ft_info(*this);
-}
-
-void ClapTrap::beRepaired ( unsigned int amount ) {
-	std::cout << this->getName() << " repaired " << amount << " points of health. " << std::endl;
-	this->setHitpoints(this->getHitpoints() + amount);
-	ft_info(*this);
-}
-
-void ft_info ( ClapTrap &other ) {
-	std::cout << "Name: " << other.getName() << std::endl;
-	std::cout << "Hitpoints: " << other.getHitpoints() << std::endl;
-	std::cout << "Energy Points: " << other.getEnergyPoints() << std::endl;
-	std::cout << "Attack damage: " << other.getAttackDamage() << std::endl;
-	std::cout << "----------------------------------------------------" << std::endl;
 }

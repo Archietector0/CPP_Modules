@@ -3,7 +3,10 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap {
+class FragTrap : virtual public ClapTrap {
+    protected:
+        unsigned int _hitpoints;
+        
     public:
         FragTrap();
         ~FragTrap();

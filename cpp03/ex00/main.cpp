@@ -1,16 +1,36 @@
 #include "ClapTrap.hpp"
 
 int main () {
+    ClapTrap a ("Kevin");
+    ClapTrap b ("John");
+    // ClapTrap c (b);
 
-	ClapTrap a ( "Harry" );
+    a.attack ("TreeMonster");
+    b.attack ("LollyPop");
+    // a.attack ("TreeMonster");
 
-	a.setAttackDamage(25);
-	// a.setEnergyPoints();
-	a.setHitpoints(100);
+    a.takeDamage (9);
+    b.takeDamage (1);
 
-	ClapTrap b (a);
+    a.beRepaired(5);
+    b.beRepaired(25);
 
-	a.attack( "Tree" );
-	a.takeDamage( 43 );
-	a.beRepaired( 25 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    return 0;
 }

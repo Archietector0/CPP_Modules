@@ -4,8 +4,8 @@ NAME = scavTrap
 
 HEADERS = ClapTrap.hpp ScavTrap.hpp
 
-SRC = main.cpp		\
-	  ClapTrap.cpp	\
+SRC = main.cpp \
+	  ClapTrap.cpp \
 	  ScavTrap.cpp
 
 CC = clang++

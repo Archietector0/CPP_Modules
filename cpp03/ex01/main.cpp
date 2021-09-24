@@ -2,18 +2,40 @@
 
 int main () {
 
-	ScavTrap a ("Marry");
+    ScavTrap player_1("Jessy Pinkman");
+    ClapTrap player_2("CJ");
 
-	a.setName("Lolla");
-	a.setHitpoints(43);
-	a.setEnergyPoints(42);
-	a.setAttackDamage(41);
+    player_1.guardGate();
 
-	ScavTrap v (a) ;
+    player_2.attack("Stone");
+    
+    player_1.attack("Elephant");
 
-	v.attack("Bear");
-	v.beRepaired(21);
-	v.takeDamage(15);
 
-	v.guardGate();
+
+    // ScavTrap player_SC("Jonny");
+    // ClapTrap player_CL("Garry");
+
+    // ptr = &player_SC;
+
+    // ptr->attack("TreeMonster");
+    // ptr->takeDamage(3);
+    // ptr->beRepaired(2);
+
+    // ptr->guardGate();
+    
+    // ptr = &player_CL;
+
+    // ptr->attack("Mirmaid");
+    // ptr->takeDamage(3);
+    // ptr->beRepaired(2);
+    
+    // ScavTrap player_g (player_CL);
+
+
+
+
+
+
+    return 0;
 }

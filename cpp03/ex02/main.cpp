@@ -2,20 +2,34 @@
 
 int main () {
 
-	FragTrap a ("Marry");
+    FragTrap a("Catty-Marry");
 
-	a.setName("Lolla");
-	a.setHitpoints(43);
-	a.setEnergyPoints(42);
-	a.setAttackDamage(41);
+    ClapTrap b("John-banana");
 
-	FragTrap v (a) ;
+    a.attack("Fish Bob");
 
-	v.attack("Bear");
-	v.beRepaired(21);
-	v.takeDamage(15);
+    a.takeDamage(44);
 
-	v.highFivesGuys();
+    a.highFivesGuys();
+
+    a.beRepaired(13);
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    return 0;
 }

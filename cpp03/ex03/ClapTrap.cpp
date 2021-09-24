@@ -36,7 +36,7 @@ ClapTrap &ClapTrap::operator = ( const ClapTrap &other ) {
 }
 
 void        ClapTrap::playerInfo () {
-    std::cout << "Name: " << _name << std::endl;
+    std::cout << "Name: " << this->_name << std::endl;
     std::cout << "HitPoints: " << _hitpoints << std::endl;
     std::cout << "EnergyPoints: " << _energyPoints << std::endl;
     std::cout << "AttackDamage: " << _attackDamage << std::endl;

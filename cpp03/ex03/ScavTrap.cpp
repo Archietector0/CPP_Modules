@@ -67,7 +67,6 @@ void            ScavTrap::takeDamage ( unsigned int amount ) {
     playerInfo();
 }
 
-
 void            ScavTrap::beRepaired ( unsigned int amount ) {
     std::cout << this->_name << " repaired " << amount << " points of HP." << std::endl;
     if (amount >= 50000)
