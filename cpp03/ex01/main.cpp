@@ -2,14 +2,19 @@
 
 int main () {
 
-    ScavTrap player_1("Jessy Pinkman");
-    ClapTrap player_2("CJ");
+    // ScavTrap player_1("Jessy Pinkman");
+    // ClapTrap player_2("CJ");
 
-    player_1.guardGate();
+    // player_1.guardGate();
 
-    player_2.attack("Stone");
+    // player_2.attack("Stone");
     
-    player_1.attack("Elephant");
+    // player_1.attack("Elephant");
+
+    ClapTrap *meta = new ClapTrap();
+    ClapTrap *i = new ScavTrap();
+
+    i->beRepaired(4);
 
 
 
