@@ -1,15 +1,16 @@
 #include "Dog.hpp"
 
-Dog::Dog		() : dogBrain(new Brain()){
+Dog::Dog		() : dogBrain(new Brain()) {
 	this->_type = "Dog";
 	std::cout << "Dog default constructor was called!" << std::endl;
 }
 
 Dog::~Dog		() {
+	delete dogBrain;
 	std::cout << "Dog destructor was called!" << std::endl;
 }
 
-Dog::Dog		( const Dog &other ) {
+Dog::Dog		( const Dog &other ) : dogBrain (new Brain()) {
 	std::cout << "Dog COPY constructor was called!" << std::endl;
 	operator = (other);
 }
@@ -18,7 +19,7 @@ Dog				&Dog::operator = ( const Dog &other ) {
 	if (this == &other)
 		return *this;
 	this->_type = other._type;
-	this->setDogIdea(other.idea);
+	*(this->dogBrain) = *(other.dogBrain);
 	return *this;
 }
 

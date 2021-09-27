@@ -1,26 +1,27 @@
 #include "Cat.hpp"
 
-Cat::Cat    () : catBrain(new Brain()){
+Cat::Cat	() : catBrain(new Brain()) {
     this->_type = "Cat";
     std::cout << "Cat default constructor was called!" << std::endl;
 }
 
-Cat::~Cat   () {
-    std::cout << "Cat destructor was called!" << std::endl;
+Cat::~Cat	() {
+	delete catBrain;
+	std::cout << "Cat destructor was called!" << std::endl;
 }
 
-Cat::Cat    ( const Cat &other ) {
-    std::cout << "Cat COPY constructor was called!" << std::endl;
-    operator = (other);
+Cat::Cat	( const Cat &other ) : catBrain(new Brain()) {
+	std::cout << "Cat COPY constructor was called!" << std::endl;
+	operator = (other);
 }
 
-Cat         &Cat::operator = ( const Cat &other ) {
+Cat			&Cat::operator = ( const Cat &other ) {
     std::cout << "Cat asignation operator was called!" << std::endl;
 	// std::cout << this->idea << std::endl;
     if (this == &other)
         return *this;
     this->_type = other._type;
-	this->catBrain->setIdeas(other.catBrain->);
+	*(this->catBrain) = *(other.catBrain);
 	return *this;
 }
 
