@@ -9,17 +9,16 @@ Cure::~Cure	() {
 	std::cout << "Cure destructor was called!" << std::endl;
 }
 
-Cure::Cure	( const std::string &type ) {
-	this->_type = type;
-	std::cout << "Cure COPY constructor-1 was called!" << std::endl;
-}
-
 Cure::Cure	( const Cure &other ) {
-	std::cout << "Cure COPY constructor-2 was called!" << std::endl;
+	std::cout << "Cure COPY constructor was called!" << std::endl;
 	operator = (other);
 }
 
-Cure		&Cure::operator = ( const Cure& other ) {
+Cure::Cure	( std::string const & type ) {
+	this->_type = type;
+}
+
+Cure		&Cure::operator = ( const Cure &other ) {
 	std::cout << "Cure assignation operator was called!" << std::endl;
 	if (this == &other)
 		return *this;
@@ -27,14 +26,14 @@ Cure		&Cure::operator = ( const Cure& other ) {
 	return *this;
 }
 
-std::string const	&Cure::getType() const {
+std::string const	&Cure::getType () const {
 	return this->_type;
 }
 
-AMateria			*Cure::clone() const {
+AMateria			*Cure::clone () const {
 	return (new Cure());
 }
 
 void				Cure::use ( ICharacter& target ) {
-	std::cout  << "** heals " << target.getName() << "'s wounds *" << std::endl;
+	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }

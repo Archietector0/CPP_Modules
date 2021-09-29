@@ -2,32 +2,32 @@
 #define CHARACTER_HPP
 
 #include "ICharacter.hpp"
-#include "AMateria.hpp"
 
 class Character : public ICharacter {
 	private:
-		std::string	_name;
-		AMateria	*materia[4];
+		std::string	type;
+		AMateria	*_amateria[4];
 
 	public:
 		// Con / De - structor
-		Character( const std::string &name );
-		~Character();
+		Character	();
+		~Character	();
 
 		// Copy constructor
-		Character( const Character &other );
+		Character	( const Character &other );
+		Character	( std::string name );
 
 		// Assignation operator
-		Character &operator = ( const Character &other );
+		Character	&operator = ( const Character &other );
 
+		// Extra functions
+		std::string const	&getName () const;
+		void				equip ( AMateria* m );
+		void				unequip ( int idx );
+		void				use ( int idx, ICharacter& target );
 
-		std::string const & getName() const;
-		void equip( AMateria* m );
-		void unequip( int idx );
-		void use( int idx, ICharacter& target );
 };
 
-};
 
 
 #endif

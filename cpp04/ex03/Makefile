@@ -1,17 +1,21 @@
 .PHONY: all clean bonus fclean re
 
-NAME = inhibits
+NAME = AMateria
 
-HEADERS =	AMateria.hpp	\
-			Cure.hpp		\
-			Ice.hpp			\
-			Character.hpp
+HEADERS =	AMateria.hpp		\
+			Ice.hpp				\
+			Cure.hpp			\
+			ICharacter.hpp		\
+			Character.hpp		\
+			MateriaSource.hpp	\
+			IMateriaSource.hpp
 
-SRC = 		main.cpp		\
-			AMateria.cpp	\
-			Cure.cpp		\
-			Ice.cpp			\
-			Character.hpp
+SRC =		main.cpp			\
+			AMateria.cpp		\
+			Ice.cpp				\
+			Cure.cpp			\
+			Character.cpp		\
+			MateriaSource.cpp
 
 CC = clang++
 

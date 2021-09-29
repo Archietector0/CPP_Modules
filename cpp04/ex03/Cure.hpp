@@ -2,7 +2,6 @@
 #define CURE_HPP
 
 #include "AMateria.hpp"
-#include "Character.hpp"
 
 class Cure : public AMateria {
 	private:
@@ -12,18 +11,17 @@ class Cure : public AMateria {
 		Cure	();
 		~Cure	();
 
-		// Copy constructor
-		Cure	( const std::string &type );
+		// Copy operator
 		Cure	( const Cure &other );
+		Cure	( std::string const & type );
 
 		// Assignation operator
-		Cure	&operator = ( const Cure& other );
+		Cure	&operator = ( const Cure &other );
 
-		// Dop virtual func's
-		std::string const	&getType() const;
-		AMateria			*clone() const;
+		// Extra functions
+		std::string const	&getType () const;
+		AMateria			*clone () const;
 		void				use ( ICharacter& target );
-
 
 
 };
