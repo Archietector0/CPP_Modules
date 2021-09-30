@@ -1,29 +1,27 @@
 #include "Bureaucrat.hpp"
 
-int main () {
+int		main(){
+	try{
+		Bureaucrat Marry("Marry", 1);
+		std::cout << Marry;
+		Marry.incGrade();
+	}
+	catch (std::exception &exc) { std::cout << "ERROR IS: " << exc.what() << std::endl; }
 
-	Bureaucrat bob("Marry", 67);
+	std::cout << std::endl;
 
-	Bureaucrat lol("Garry", 78);
+	try {
+		Bureaucrat Garry("Garry", 150);
+		std::cout << Garry;
+		Garry.decGrade();
+	}
+	catch (std::exception &exc) { std::cout << "ERROR IS: " << exc.what() << std::endl; }
 
+	std::cout << std::endl;
 
-
-	Bureaucrat lol1(bob);
-
-	std::cout << bob.getName() << std::endl;
-	std::cout << bob.getGrade() << std::endl;
-
-	std::cout << lol.getName() << std::endl;
-	std::cout << lol.getGrade() << std::endl;
-
-	bob.decGrade();
-	std::cout << bob.getGrade() << std::endl;
-
-	bob.decGrade();
-	std::cout << bob.getGrade() << std::endl;
-
-	bob.incGrade();
-	std::cout << bob.getGrade() << std::endl;
-
-	return 0;
+	try {
+		Bureaucrat Barry("Barry", 50);
+		std::cout << Barry;
+	}
+	catch (std::exception &exc) { std::cout << "ERROR IS: " << exc.what() << std::endl; }
 }
