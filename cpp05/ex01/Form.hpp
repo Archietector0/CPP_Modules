@@ -3,34 +3,47 @@
 
 #include "Bureaucrat.hpp"
 
+
 class Form {
 	private:
 		const std::string	_name;
-		bool				_val;
-		const int			_cmpltGrade;
-		const int			_signGrade;
-
+		bool				_isSign;
+		const int			_gradeToSign;
+		const int			_gradeToExe;
+		
 	public:
 		// Con / De - structor
-		// Form	();
-		Form	( const std::string name, const int cmpltGrade, const int signGrade );
+		Form	();
 		~Form	();
+		Form	( const std::string name, const int gradeToSign, const int gradeToExe );
 
 		// Copy constructor
-		Form	( const Form &other );
+		Form	( const Form &otherForm );
 
 		// Assignation operator
-		Form &operator = ( const Form &other );
+		Form	&operator = ( const Form &otherForm );
+
+		// getters - methods
+		const std::string	getName() const;
+		bool				getIsSign() const;
+		const int			getGradeToSign() const;
+		const int			getGradeToExe() const;
+
+		// Execptions
+		class	GradeTooHighException : public std::exception {
+			const	char *what	() const throw();
+		};
+
+		class	GradeTooLowException : public std::exception {
+			const	char *what	() const throw();
+		};
 
 		// Extra functions
-		const std::string	getName() const;
-		const bool			getVal() const;
-		int					getCmpltGrade();
-		int					getSignGrade();
-
-		void				beSigned( const Bureaucrat& bur );
+		void	beSigned ( const Bureaucrat &bur );
 
 };
+
+std::ostream &operator<< ( std::ostream &out, const Form &form );
 
 
 #endif

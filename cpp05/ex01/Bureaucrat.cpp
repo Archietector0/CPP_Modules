@@ -50,13 +50,6 @@ void				Bureaucrat::incGrade() {
 		throw Bureaucrat::GradeTooHigh();
 }
 
-void				Bureaucrat::signForm ( const Form& form ) {
-	if (form.getVal() == true)
-		std::cout << this->getName() << " signs " << form.getName() << std::endl;
-	else
-		std::cout << this->getName() << " cannot sign " << form.getName() << " because grade is invalid." << std::endl;
-}
-
 const char			*Bureaucrat::GradeTooLow::what() const throw() {
 	return ("Grade so low!");
 }
@@ -69,4 +62,16 @@ std::ostream &operator << (std::ostream &out, const Bureaucrat &b) {
 	std::cout << "Name is: " << b.getName() << std::endl;
 	std::cout << "Grade is: " << b.getGrade() << std::endl;
 	return (out);
+}
+
+void				Bureaucrat::signForm ( const Form &form ) {
+	if (form.getIsSign() == true)
+		std::cout << this->getName() << " signs " << form.getName() << std::endl;
+	else {
+		if (this->getGrade() >= form.getGradeToSign())
+			std::cout << this->getName() << " cannot sign " << form.getName() <<" because Grade so low!" << std::endl;
+		else
+			std::cout << this->getName() << " cannot sign " << form.getName() <<" because Grade so high!" << std::endl;
+
+	}
 }

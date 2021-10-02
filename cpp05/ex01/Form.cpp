@@ -1,53 +1,84 @@
 #include "Form.hpp"
 
-// Form::Form	() : _name("None"), _val(0), _cmpltGrade(5), _signGrade(5) {
-// 	std::cout << "Form default constructor was called!" << std::endl;
-// }
-
-Form::Form	( const std::string name, const int cmpltGrade, const int signGrade ) :
-															_name(name),
-															_val(false),
-															_cmpltGrade(cmpltGrade),
-															_signGrade(signGrade) {
-	std::cout << "Form default constructor was called!" << std::endl;
+Form::Form  () : _name("None"),
+                _isSign(false),
+                _gradeToSign(0),
+                _gradeToExe(0) {
+    std::cout << "Form default constructor was called!" << std::endl;
 }
 
-Form::~Form	() {
-	std::cout << "Form destructor was called!" << std::endl;
+Form::~Form () {
+    std::cout << "Form destructor was called!" << std::endl;
 }
 
-Form::Form	( const Form &other ) : _name("None"),
-									_val(false),
-									_cmpltGrade(5),
-									_signGrade(5) {
-	std::cout << "Form COPY constructor was called!" << std::endl;
-	operator = (other);
+Form::Form  ( const std::string name, const int gradeToSign, const int gradeToExe ) : _name(name),
+                                                                                     _gradeToSign(gradeToSign),
+                                                                                     _gradeToExe(gradeToExe) {
+    std::cout << "Form constructor was called!" << std::endl;
 }
 
-Form		&Form::operator = ( const Form &other ) {
-	if (this == &other)
-		return *this;
-	this->_val = other._val;
-	return *this;
+Form::Form  ( const Form &otherForm ) : _name(otherForm._name),
+                                        _gradeToSign(otherForm._gradeToSign),
+                                        _gradeToExe(otherForm._gradeToExe) {
+    std::cout << "Form COPY constructor was called!" << std::endl;
+    operator = (otherForm);
+}
+
+Form	    &Form::operator = ( const Form &otherForm ) {
+    std::cout << "Form assignation operator was called!" << std::endl;
+    if (this == &otherForm)
+        return *this;
+    this->_isSign = otherForm._isSign;
+    return *this;
 }
 
 const std::string	Form::getName() const {
-	return this->_name;
+    return this->_name;
 }
 
-const bool			Form::getVal() const {
-	return this->_val;
+bool				Form::getIsSign() const {
+    return this->_isSign;
 }
 
-int					Form::getCmpltGrade() {
-	return this->_cmpltGrade;
+const int			Form::getGradeToSign() const {
+    return this->_gradeToSign;
 }
 
-int					Form::getSignGrade() {
-	return this->_signGrade;
+const int			Form::getGradeToExe() const {
+    return this->_gradeToExe;
 }
 
-void				Form::beSigned( const Bureaucrat& bur ) {
-	if (bur.getGrade() <= this->_signGrade)
-		_val = true;
+const char			*Form::GradeTooLowException::what() const throw() {
+	return ("Grade so low!");
 }
+
+const char			*Form::GradeTooHighException::what() const throw() {
+	return ("Grade so high!");
+}
+
+std::ostream        &operator << (std::ostream &out, const Form &form ) {
+    std::cout << "Form name: " << form.getName() << std::endl;
+    std::cout << "Form sign?: " << form.getIsSign() << std::endl;
+    std::cout << "Form grade to sign: " << form.getGradeToSign() << std::endl;
+    std::cout << "Form grade to exe: " << form.getGradeToExe() << std::endl;
+
+	return (out);
+}
+
+void	            Form::beSigned ( const Bureaucrat &bur ) {
+    if (bur.getGrade() <= this->getGradeToSign() && bur.getGrade() >= 1) {
+        this->_isSign = true;
+        std::cout << "FORM IS SIGN Sucesess" << std::endl;
+    } else if (bur.getGrade() <= this->getGradeToSign() && bur.getGrade() <= 1) {
+		throw Form::GradeTooLowException ();
+    } else if (bur.getGrade() > this->getGradeToSign()) {
+		throw Form::GradeTooHighException ();
+    } else
+        std::cout << "Hmmm, it's strange var!" << std::endl;
+}
+
+
+
+
+
+

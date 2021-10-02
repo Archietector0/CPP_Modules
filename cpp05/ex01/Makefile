@@ -1,13 +1,13 @@
 .PHONY: all clean bonus fclean re
 
-NAME = bureaucrat
+NAME = form
 
-HEADERS = Bureaucrat.hpp \
-		  Form.hpp
+HEADERS =	Bureaucrat.hpp	\
+			Form.hpp
 
-SRC = main.cpp \
-	  Bureaucrat.cpp \
-	  Form.cpp
+SRC =		main.cpp		\
+			Bureaucrat.cpp	\
+			Form.cpp
 
 CC = clang++
 

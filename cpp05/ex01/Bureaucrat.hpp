@@ -29,7 +29,7 @@ class Bureaucrat {
 		void				decGrade();
 		void				incGrade();
 
-		void				signForm( const Form& form );
+		void				signForm ( const Form &form );
 
 	// Execptions
 	class	GradeTooHigh : public std::exception {
