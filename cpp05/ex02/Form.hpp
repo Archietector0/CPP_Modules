@@ -27,8 +27,8 @@ class Form {
 		// getters - methods
 		const std::string	getName() const;
 		bool				getIsSign() const;
-		int			getGradeToSign() const;
-		int			getGradeToExe() const;
+		int					getGradeToSign() const;
+		int					getGradeToExe() const;
 
 		// Execptions
 		class	GradeTooHighException : public std::exception {
@@ -39,8 +39,15 @@ class Form {
 			const	char *what	() const throw();
 		};
 
+		class	NotSigned : public std::exception {
+			const	char *what	() const throw();
+		};
+
 		// Extra functions
-		void	beSigned ( const Bureaucrat &bur );
+		void			beSigned ( const Bureaucrat &bur );
+		virtual void	execute ( Bureaucrat const &executor ) const;
+        virtual void    action() const = 0;
+
 
 };
 

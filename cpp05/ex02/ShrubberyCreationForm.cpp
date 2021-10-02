@@ -9,7 +9,8 @@ ShrubberyCreationForm::~ShrubberyCreationForm () {
     std::cout << "ShrubberyCreationForm desructor was called!" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm ( const ShrubberyCreationForm& other ) : _target(other._target) {
+ShrubberyCreationForm::ShrubberyCreationForm ( const ShrubberyCreationForm& other ) : Form(other),
+                                                                                     _target(other._target) {
     std::cout << "ShrubberyCreationForm COPY consructor was called!" << std::endl;
     operator = (other);
 }
@@ -26,13 +27,13 @@ const std::string       ShrubberyCreationForm::getShrubberyTarget() const {
 }
 
 void		ShrubberyCreationForm::action() const {
-	std::ofstream   ff;
+	std::ofstream   file;
 
-	ff.open((this->getShrubberyTarget() + "_shrubbery").c_str());
-	if (!ff.is_open())
-		std::cout << "Fd error!\n";
+	file.open((this->getShrubberyTarget() + "_shrubbery").c_str());
+	if (!file.is_open())
+		std::cout << "Fd error!" << std::endl;
 	else {
-		ff <<
+		file <<
 "		          _{\\ _{\\{\\/}/}/}__ \n" <<
 "             {/{/\\}{/{/\\}(\\}{/\\} _ \n" <<
 "            {/{/\\}{/{/\\}(_)\\}{/{/\\}  _ \n" <<
@@ -68,6 +69,12 @@ void		ShrubberyCreationForm::action() const {
 "  |  something, it is so damn   | \n" <<
 "  |    much work to get it?     | \n" <<
 "   \\___________________________/ \n";
-		ff.close();
+		file.close();
 	}
 }
+
+void		            ShrubberyCreationForm::execute( Bureaucrat const &bur ) const {
+    Form::execute(bur);
+    this->action();
+}
+

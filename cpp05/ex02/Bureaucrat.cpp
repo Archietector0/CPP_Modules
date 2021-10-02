@@ -72,6 +72,14 @@ void				Bureaucrat::signForm ( const Form &form ) {
 			std::cout << this->getName() << " cannot sign " << form.getName() <<" because Grade so low!" << std::endl;
 		else
 			std::cout << this->getName() << " cannot sign " << form.getName() <<" because Grade so high!" << std::endl;
+	}
+}
 
+void				Bureaucrat::executeForm ( Form const &form ) {
+	try {
+		form.execute(*this);
+		std::cout << "Execution is successful." << std::endl;
+	} catch (std::exception &exc) { 
+		std::cout << "EXECUTION ERROR IS: " << exc.what() << std::endl; 
 	}
 }

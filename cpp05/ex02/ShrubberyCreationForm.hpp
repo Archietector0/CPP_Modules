@@ -23,6 +23,8 @@ class ShrubberyCreationForm : public Form {
         //Extra fuctions
         const std::string       getShrubberyTarget() const;
         void		            action() const ;
+        void		            execute( Bureaucrat const &bur ) const;
+
 
 
 

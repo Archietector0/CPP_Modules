@@ -81,8 +81,16 @@ void	            Form::beSigned ( const Bureaucrat &bur ) {
         std::cout << "Hmmm, it's strange var!" << std::endl;
 }
 
+void					Form::execute(Bureaucrat const &bureaucrat) const{
+	if (!this->_isSign)
+		throw Form::NotSigned();
+	if (bureaucrat.getGrade() > this->_gradeToExe)
+		throw Form::GradeTooHighException();
+}
 
-
+const		char *Form::NotSigned::what() const throw(){
+	return ("Form is not signed.");
+}
 
 
 

@@ -21,6 +21,7 @@ class RobotomyRequestForm : public Form {
         // Extra functions
         const std::string       getRobotomyTarget() const;
         void		            action() const ;
+        void		            execute( Bureaucrat const &bur ) const;
 
 
 };

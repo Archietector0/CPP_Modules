@@ -5,12 +5,14 @@ NAME = form
 HEADERS =	Bureaucrat.hpp				\
 			ShrubberyCreationForm.hpp	\
 			RobotomyRequestForm.hpp		\
+			PresidentialPardonForm.hpp	\
 			Form.hpp
 
 SRC =		main.cpp					\
 			Bureaucrat.cpp				\
 			ShrubberyCreationForm.cpp 	\
 			RobotomyRequestForm.cpp		\
+			PresidentialPardonForm.cpp	\
 			Form.cpp
 
 CC = clang++
@@ -24,10 +26,10 @@ DEL = rm -rf
 all: $(NAME)
 
 $(NAME): $(HEADERS) $(SRC)
-		@$(CC) $(FLAG) $(SRC) $(OPTIONOBJ) $(NAME)
+		$(CC) $(FLAG) $(SRC) $(OPTIONOBJ) $(NAME)
 
 %.o: %.c $(HEADERS) $(SRC)
-		$(CC) $(FLAG) $< $(OPTIONOBJ) $@
+		@$(CC) $(FLAG) $< $(OPTIONOBJ) $@
 
 clean:
 		@$(DEL) $(NAME)

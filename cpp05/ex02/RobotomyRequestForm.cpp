@@ -9,7 +9,8 @@ RobotomyRequestForm::~RobotomyRequestForm   () {
     std::cout << "RobotomyRequestForm destructor was called!" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm    ( const RobotomyRequestForm& other ) : _target(other._target) {
+RobotomyRequestForm::RobotomyRequestForm    ( const RobotomyRequestForm& other ) : Form(other),
+                                                                                   _target(other._target) {
     std::cout << "RobotomyRequestForm COPY constructor was called!" << std::endl;
     operator = (other);
 }
@@ -33,5 +34,10 @@ void		            RobotomyRequestForm::action () const {
 		std::cout << this->getRobotomyTarget() << " has been successfully robotomized." << std::endl;
 	else
 		std::cout << this->getRobotomyTarget() << " has been unsuccessfully robotomized." << std::endl;
+}
+
+void		            RobotomyRequestForm::execute( Bureaucrat const &bur ) const {
+    Form::execute(bur);
+    this->action();
 }
 
