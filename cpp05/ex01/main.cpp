@@ -1,8 +1,22 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
+
+
+// int main() {
+// 	Form form("C28", 20, 60);
+// 	std::cout << form;
+// }
+
+
+
+
+
+
+
+
 int		main(){
-	try{
+	try {
 		Bureaucrat	HenryFord("Henry Ford", 50);
 		std::cout << HenryFord;
 		Form		Ford("Ford", 20, 60);
@@ -11,7 +25,9 @@ int		main(){
 		std::cout << Ford;
 	}
 	catch (std::exception &exc) { std::cout << "ERROR IS: " << exc.what() << std::endl; }
-	std::cout << std::endl;
+		std::cout << std::endl;
+
+	
 	try{
 		Bureaucrat	Loser("Loser", 150);
 		std::cout << Loser;
@@ -22,11 +38,13 @@ int		main(){
 	}
 	catch (std::exception &exc) { std::cout << "ERROR IS: " << exc.what() << std::endl; }
 	std::cout << std::endl;
+	
 	try{
 		Form Whow("Whow", 200, 200);
 		std::cout << Whow;
 	}catch (std::exception &exc) { std::cout << "ERROR IS: " << exc.what() << std::endl; }
 	std::cout << std::endl;
+	
 	try{
 		Form howWW("hoWW", 0, 20);
 		std::cout << howWW;

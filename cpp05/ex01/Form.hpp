@@ -2,6 +2,7 @@
 #define FORM_HPP
 
 #include "Bureaucrat.hpp"
+class Bureaucrat;
 
 
 class Form {
@@ -26,8 +27,8 @@ class Form {
 		// getters - methods
 		const std::string	getName() const;
 		bool				getIsSign() const;
-		const int			getGradeToSign() const;
-		const int			getGradeToExe() const;
+		int			getGradeToSign() const;
+		int			getGradeToExe() const;
 
 		// Execptions
 		class	GradeTooHighException : public std::exception {

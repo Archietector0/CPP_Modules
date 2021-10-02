@@ -14,6 +14,10 @@ Form::~Form () {
 Form::Form  ( const std::string name, const int gradeToSign, const int gradeToExe ) : _name(name),
                                                                                      _gradeToSign(gradeToSign),
                                                                                      _gradeToExe(gradeToExe) {
+    if (this->getGradeToSign() < 1)
+		throw Form::GradeTooHighException ();
+    else if (this->getGradeToSign() > 150)
+		throw Form::GradeTooLowException ();
     std::cout << "Form constructor was called!" << std::endl;
 }
 
@@ -40,11 +44,11 @@ bool				Form::getIsSign() const {
     return this->_isSign;
 }
 
-const int			Form::getGradeToSign() const {
+int			Form::getGradeToSign() const {
     return this->_gradeToSign;
 }
 
-const int			Form::getGradeToExe() const {
+int			Form::getGradeToExe() const {
     return this->_gradeToExe;
 }
 
@@ -70,9 +74,9 @@ void	            Form::beSigned ( const Bureaucrat &bur ) {
         this->_isSign = true;
         std::cout << "FORM IS SIGN Sucesess" << std::endl;
     } else if (bur.getGrade() <= this->getGradeToSign() && bur.getGrade() <= 1) {
-		throw Form::GradeTooLowException ();
-    } else if (bur.getGrade() > this->getGradeToSign()) {
 		throw Form::GradeTooHighException ();
+    } else if (bur.getGrade() > this->getGradeToSign()) {
+		throw Form::GradeTooLowException ();
     } else
         std::cout << "Hmmm, it's strange var!" << std::endl;
 }
