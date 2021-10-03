@@ -33,7 +33,7 @@ int		main(){
 	} catch (std::exception &exc) { std::cout << "ERROR IS: " << exc.what() << std::endl; }
 	
 	std::cout << std::endl;
-	try{
+	try {
 		std::cout << Shrub;
 		Shrub.beSigned(Shulman);
 		Shulman.executeForm(Shrub);		
