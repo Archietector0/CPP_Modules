@@ -1,76 +1,132 @@
 #include "Convert.hpp"
 
-Convert::Convert	() : _value("NoneV"), _type("NoneT") {
-	std::cout << "Convert default constructor was called!" << std::endl;
+Convert::Convert    () {
+    // std::cout << "Convert constructor was called!" << std::endl;
 }
-
+		
 Convert::~Convert	() {
-	std::cout << "Convert destructor was called!" << std::endl;
+    // std::cout << "Convert destructor was called!" << std::endl;
 }
 
-Convert::Convert	( const Convert& otherConvert ) {
-	std::cout << "Convert COPY constructor was called!" << std::endl;
-	operator = (otherConvert);
+Convert::Convert	( Convert &other ) {
+    std::cout << "Convert COPY constructor was called!" << std::endl;
 }
 
-Convert				&Convert::operator = ( const Convert& otherConvert ) {
-	std::cout << "Convert assignation operator was called!" << std::endl;
-	if (this == &otherConvert)
-		return *this;
-	this->_value = otherConvert._value;
-	this->_type = otherConvert._type;
-	return *this;
+Convert		        &Convert::operator = ( Convert &other ) {
+    std::cout << "Convert assignation operator was called!" << std::endl;
+    if (this == &other)
+        return *this;
+    this->parametr = other.parametr;
+    return *this;
 }
 
-void				Convert::setValue( std::string value ) {
-	this->_value = value;
+
+int                Convert::convToChar () {
+    int i = 0;
+    
+    if (this->parametr.length() == 1 && !isdigit(this->parametr[0])) {
+        if (this->parametr[0] >= 32 && this->parametr[0] <= 126)
+            std::cout << "char: '" << static_cast<char> (this->parametr[0]) << "'" << std::endl;
+        else
+            std::cout << "char: Not displayable" << std::endl;
+    } else if (this->parametr.length() >= 1) {
+        if (this->parametr[i] == '-' || this->parametr[i] == '+')
+            ++i;
+        while (i < this->parametr.length())
+            if (!isdigit(this->parametr[i++]))
+                return -1;
+        i = atoi( this->parametr.c_str());
+        if (i >= 32 && i <= 126)
+            std::cout << "char: '" << static_cast<char> (i) << "'" << std::endl;
+        else
+            std::cout << "char: Not displayable" << std::endl;
+    }
+    return 0;
 }
 
-std::string			Convert::getValue() {
-	return this->_value;
+int		            Convert::convToInt () {
+    int i = 0;
+
+    if (this->parametr.length() == 1) {
+        if (isdigit(this->parametr[0])) {
+            i = atoi(this->parametr.c_str());
+            std::cout << "int: " << i << std::endl;
+        }
+        else
+            std::cout << "int: " << static_cast<int> (this->parametr[0]) << std::endl;
+    } else if (this->parametr.length() >= 1) {
+        i = 0;
+        if (this->parametr[i] == '-' || this->parametr[i] == '+')
+            ++i;
+        while (i < this->parametr.length())
+            if (!isdigit(this->parametr[i++]))
+                return -1;
+        i = atoi( this->parametr.c_str());
+        std::cout << "int: " << i << std::endl;
+    }
+    return 0;
 }
 
-void				Convert::setType( std::string type ) {
-	this->_type = type;
+int		            Convert::convToFloat () {
+        int i = 0;
+
+    if (this->parametr.length() == 1) {
+        if (isdigit(this->parametr[0])) {
+            i = atoi(this->parametr.c_str());
+            std::cout << "float: " << static_cast<float> (i) << ".0" << std::endl;
+        }
+        else
+            std::cout << "float: " << static_cast<int> (this->parametr[0]) << std::endl;
+    } else if (this->parametr.length() >= 1) {
+        i = 0;
+        if (this->parametr[i] == '-' || this->parametr[i] == '+')
+            ++i;
+        while (i < this->parametr.length())
+            if (!isdigit(this->parametr[i++]))
+                return -1;
+        i = atoi( this->parametr.c_str());
+        std::cout << "float: " << i << std::endl;
+    }
+    return 0;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    return 0;
 }
 
-std::string			Convert::getType() {
-	return this->_type;
+
+
+
+
+
+
+
+
+
+
+
+
+
+std::string         Convert::getParametr () {
+    return this->parametr;
 }
 
-void				Convert::parseValue( std::string value ) {
-	int		p;
-	int		i;
-	char	pm;
-
-	if (value.length() == 1 && !isdigit(value[0]))
-		this->_type = "сhar";
-
-	for (i = 0; i < value.length(); ++i) {
-		if (value[i] ==)
-
-	}
-
-
+std::string         Convert::getTypeParametr () {
+    return this->typeParametr;
 }
 
-void				Convert::convertToChar( std::string type ) {
-	if (this->_type != type || this->_type == "NoneT") {
-		std::cout << this->_type << ": " << std::endl;
-	} else {
-		int	charInt = this->_value[0] + 0;
-		// std::cout << charInt << std::endl;
-		if (charInt >= 33 && charInt <= 126)
-			std::cout << this->_type << ": '" << static_cast<char>(charInt) << "'" << std::endl;
-		else
-			std::cout << this->_type << ": non displayable" << std::endl;
-	}
+void                Convert::setParametr ( char *data ) {
+    this->parametr = data;
 }
 
-		// void		convertToChar();
-
-
-
-
-// if (_type == "char")
-// 		std::cout << WHITE << "Char : " << BLUE << _string << std::endl;
+void                Convert::setTypeParametr ( std::string data ) {
+    this->typeParametr = data;
+}
