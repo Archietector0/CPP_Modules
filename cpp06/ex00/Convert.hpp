@@ -6,8 +6,26 @@
 
 class Convert {
 	private:
-		std::string parametr;
-		std::string typeParametr;
+		std::string param;
+		std::string type;
+
+		// Private methods
+		int checkingVal		();
+		void	ChToCh		();
+		void	IntToCh		();
+		// void	FloatToCh	();
+		void	DoubleToCh	();
+
+
+
+		void	ChToInt		();
+		void	IntToInt	();
+		void	DoubleToInt	();
+
+
+
+		void	ChToDouble	();
+		void	IntToDouble	();
 	
 	public:
 		// Con / De - structor
@@ -15,26 +33,25 @@ class Convert {
 		~Convert	();
 
 		// Copy constructor
-		Convert		( Convert &other );
+		Convert ( const Convert & other );
 
 		// Assignation operator
-		Convert		&operator = ( Convert &other );
+		Convert &operator = ( const Convert &other );
 
-		// External func's
-		std::string getParametr		();
-		std::string getTypeParametr ();
-		void		setParametr		( char *data );
-		void		setTypeParametr	( std::string data );
+		// Methods
+		int convToChar( std::string str );
+		int convToInt( std::string str );
+		int convToFloat( std::string str );
+		int convToDouble( std::string );
 
-		int		convToChar ();
-		int		convToInt ();
-		int		convToFloat();
+
+
+
 
 
 };
 
-int         isDigit ( std::string str );
-int         isDisplayable ( char sym );
+int		wrtError ( std::string str );
 
 
 
