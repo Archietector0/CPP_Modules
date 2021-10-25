@@ -12,6 +12,7 @@ Convert			&Convert::operator = ( const Convert &other ) {
 	if (this == &other)
 		return *this;
 	this->param = other.param;
+	this->type = other.type;
 	return *this;
 }
 

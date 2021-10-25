@@ -29,9 +29,9 @@ class Convert {
 		Convert &operator = ( const Convert &other );
 
 		// Methods
-		int convToChar( std::string str );
-		int convToInt( std::string str );
-		int convToFloat( std::string str );
+		int convToChar	( std::string str );
+		int convToInt	( std::string str );
+		int convToFloat	( std::string str );
 		int convToDouble( std::string str );
 
 
