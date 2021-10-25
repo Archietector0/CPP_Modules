@@ -125,39 +125,12 @@ void			Convert::DoubleToCh() {
 	}
 }
 
-
-
-
-
-
-
-
-
-// void			Convert::ChToInt	() {
-// 	std::cout << "int: " << static_cast<int> (this->param[0]) << std::endl;
-// }
-
-// void			Convert::IntToInt	() {
-// 	int i = 0;
-// 	i = atoi(this->param.c_str());
-// 	std::cout << "int: " << static_cast<int> (i) << std::endl;
-// }
-
 void			Convert::DoubleToInt	() {
 	double flNum = 0;
 
 	flNum = atoi(this->param.c_str());
 	std::cout << "int: " << static_cast<int> (flNum) << std::endl;
 }
-
-
-
-
-
-
-
-
-
 
 void			Convert::IntToDouble	() {
 	double flNum = 0;
@@ -167,11 +140,6 @@ void			Convert::IntToDouble	() {
 
 }
 
-
-
-
-
-
 int				Convert::checkingVal () {
 	int i = 0;
 	int flF = 0;
@@ -179,14 +147,26 @@ int				Convert::checkingVal () {
 	int flSign = 0;
 	int flTrash = 0;
 
-	// std::cout << isdigit((int)this->param[1])<< std::endl;
+	if (this->param == "+inf" || this->param == "-inf" || this->param == "inf" ||
+		this->param == "+inff" || this->param == "+inff" || this->param == "inff" ||
+		this->param == "+nan" || this->param == "-nan" || this->param == "nan" ||
+		this->param == "+nanf" || this->param == "-nanf" || this->param == "nanf") {
+			if (this->type == "char" || this->type == "int") {
+				std::cout << this->type << ": impossible" << std::endl;
+			} else if (this->type == "float") {
+				std::cout << this->type << ": nanf" << std::endl;
+			} else if (this->type == "double") {
+				std::cout << this->type << ": nan" << std::endl;
+			}
+			return 0;
+		}
 
 	while (i < static_cast<int> (this->param.length())) {
 		if (this->param[i] == '.')
 			flDote = 1;
 		if (this->param[i] == '+' || this->param[i] == '-')
 			flSign = 1;
-		if ( this->param.length() > 1 && this->param[i] != '.' && this->param[i] != 'f' && !(this->param[i] >= 48 && this->param[i] <= 57))
+		if ( this->param[i] )
 			{}// flTrash = 1;
 		if (this->param[i] == 'f' && this->param.length() > 1)
 			flF = 1;
