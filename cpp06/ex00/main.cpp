@@ -19,7 +19,7 @@ int main ( int argc, char **argv ) {
 	convert.convToChar(argv[1]);
 	convert.convToInt(argv[1]);
 	convert.convToFloat(argv[1]);
-	// convert.convToDouble(argv[1]);
+	convert.convToDouble(argv[1]);
 
 
 
