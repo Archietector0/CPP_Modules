@@ -18,6 +18,10 @@ Convert			&Convert::operator = ( const Convert &other ) {
 int				Convert::convToChar ( std::string str ) {
 	this->param = str;
 	this->type = "char";
+	if (checkLimits()) {
+		std::cout << this->type << ": impossible. Overflow." << std::endl;
+		return 1;
+	}
 	checkingVal();
 	return 0;
 }
@@ -25,6 +29,10 @@ int				Convert::convToChar ( std::string str ) {
 int				Convert::convToInt	( std::string str ) {
 	this->param = str;
 	this->type = "int";
+	if (checkLimits()) {
+		std::cout << this->type << ": impossible. Overflow." << std::endl;
+		return 1;
+	}
 	checkingVal();
 	return 0;
 }
@@ -32,6 +40,10 @@ int				Convert::convToInt	( std::string str ) {
 int				Convert::convToFloat( std::string str ) {
 	this->param = str;
 	this->type = "float";
+	if (checkLimits()) {
+		std::cout << this->type << ": impossible. Overflow." << std::endl;
+		return 1;
+	}
 	checkingVal();
 	return 0;
 }
@@ -40,6 +52,10 @@ int				Convert::convToFloat( std::string str ) {
 int				Convert::convToDouble( std::string str ) {
 	this->param = str;
 	this->type = "double";
+	if (checkLimits()) {
+		std::cout << this->type << ": impossible. Overflow." << std::endl;
+		return 1;
+	}
 	checkingVal();
 	return 0;
 }
@@ -68,9 +84,9 @@ void			Convert::IntToCh () {
 	}
 
 	if (this->type == "int") {
-		int i = 0;
-		i = atoi(this->param.c_str());
-		std::cout << this->type << ": " << static_cast<int> (i) << std::endl;
+		// int i = 0;
+		intNum = atoi(this->param.c_str());
+		std::cout << this->type << ": " << static_cast<int> (intNum) << std::endl;
 	}
 
 	if (this->type == "float") {
@@ -125,22 +141,15 @@ void			Convert::DoubleToCh() {
 	}
 }
 
-void			Convert::DoubleToInt	() {
-	double flNum = 0;
-
-	flNum = atoi(this->param.c_str());
-	std::cout << "int: " << static_cast<int> (flNum) << std::endl;
+int				Convert::checkLimits	() {
+	long int val = atol(this->param.c_str());
+	if (!(val >= INT_MIN && val <= INT_MAX))
+		return 1;
+	return 0;
 }
 
-void			Convert::IntToDouble	() {
-	double flNum = 0;
 
-	flNum = atoi(this->param.c_str());
-	std::cout << "int: " << static_cast<int> (flNum) << std::endl;
-
-}
-
-int				Convert::checkingVal () {
+int				Convert::checkingVal	() {
 	int i = 0;
 	int flF = 0;
 	int flDote = 0;
@@ -166,33 +175,40 @@ int				Convert::checkingVal () {
 			flDote = 1;
 		if (this->param[i] == '+' || this->param[i] == '-')
 			flSign = 1;
-		if ( this->param[i] )
-			{}// flTrash = 1;
-		if (this->param[i] == 'f' && this->param.length() > 1)
+		if ( this->param.length() > 1 && ( (this->param[i] >= 32 && this->param[i] <= 42) || 
+			this->param[i] == 44 ||
+			this->param[i] == 47 || 
+			(this->param[i] >= 58 && this->param[i] <= 101) || 
+			(this->param[i] >= 103 && this->param[i] <= 126))) {
+			flTrash += 1;
+			// return 0;
+		}	
+		if (this->param[i] == 'f' && this->param.length() >= 4 && flDote )
 			flF = 1;
 		
 		++i;
 	}
-
-	i = 0;
-
-	if (flSign) {
-		++i;
-	}
-
-
 
 	// Not work good
 	if (flTrash)
 		return wrtError("ERROR: Trash found!");
 	// --------------
 
+	i = 0;
+
+	if (flSign)
+		++i;
 
 	if (this->param.length() == 1 && !isdigit(this->param[i]))
 		ChToCh();
 	if (this->param.length() >= 1 && !flDote && isdigit(this->param[i]))
 		IntToCh();
-	if (this->param.length() >= 2 && flDote)
+	if (this->param.length() >= 3 && flDote && (flF || !flF))
 		DoubleToCh();
+
+
+
+
+
 	return 0;
 }

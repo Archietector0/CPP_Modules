@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <limits.h>
 
 class Convert {
 	private:
@@ -10,23 +11,12 @@ class Convert {
 		std::string type;
 
 		// Private methods
-		int checkingVal		();
+		int		checkingVal ();
+		int		checkLimits	();
 		void	ChToCh		();
 		void	IntToCh		();
-		// void	FloatToCh	();
 		void	DoubleToCh	();
 
-
-
-		void	ChToInt		();
-		void	IntToInt	();
-		void	DoubleToInt	();
-
-
-
-		void	ChToDouble	();
-		void	IntToDouble	();
-	
 	public:
 		// Con / De - structor
 		Convert		();
@@ -42,7 +32,7 @@ class Convert {
 		int convToChar( std::string str );
 		int convToInt( std::string str );
 		int convToFloat( std::string str );
-		int convToDouble( std::string );
+		int convToDouble( std::string str );
 
 
 
