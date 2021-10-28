@@ -58,6 +58,23 @@ const char			*Bureaucrat::GradeTooHigh::what() const throw() {
 	return ("Grade so high!");
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 std::ostream &operator << (std::ostream &out, const Bureaucrat &b) {
 	std::cout << "Name is: " << b.getName() << std::endl;
 	std::cout << "Grade is: " << b.getGrade() << std::endl;

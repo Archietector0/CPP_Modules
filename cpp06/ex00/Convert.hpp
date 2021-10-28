@@ -35,9 +35,10 @@ class Convert {
 		int convToDouble( std::string str );
 
 
-
-
-
+	// Execptions
+	class	Trash : public std::exception {
+		const	char *what	() const throw();
+	};
 
 };
 

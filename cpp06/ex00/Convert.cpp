@@ -8,6 +8,11 @@ Convert::Convert ( const Convert &other ) {
 	operator = (other);
 }
 
+
+const char			*Convert::Trash::what() const throw() {
+	return "ERROR: Trash found!";
+}
+
 Convert			&Convert::operator = ( const Convert &other ) {
 	if (this == &other)
 		return *this;
@@ -191,8 +196,9 @@ int				Convert::checkingVal	() {
 	}
 
 	// Not work good
-	if (flTrash)
+	if (flTrash) {
 		return wrtError("ERROR: Trash found!");
+	}
 	// --------------
 
 	i = 0;

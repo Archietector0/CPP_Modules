@@ -13,13 +13,12 @@ int main ( int argc, char **argv ) {
 		return wrtError("ERROR: Invalid number of arguments!");
 	
 	Convert convert;
-	// std::cout << argv << std::endl;
-
-
-	convert.convToChar(argv[1]);
-	convert.convToInt(argv[1]);
-	convert.convToFloat(argv[1]);
-	convert.convToDouble(argv[1]);
+	try {
+		convert.convToChar(argv[1]);
+		convert.convToInt(argv[1]);
+		convert.convToFloat(argv[1]);
+		convert.convToDouble(argv[1]);
+	} catch (Convert::Trash()) {}
 
 
 
