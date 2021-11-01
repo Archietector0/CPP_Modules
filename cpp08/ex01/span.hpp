@@ -19,6 +19,12 @@ class Span {
 		Span	( unsigned int N );
 		~Span	();
 
+		// Copy constructors
+		Span ( const Span &other );
+
+		// Assignation operator
+		Span &operator = ( const Span &other );
+
 
 		// External funcs
 		void			addNumber		( int number );
@@ -34,3 +40,7 @@ class Span {
 
 
 #endif
+
+
+
+

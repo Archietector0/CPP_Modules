@@ -9,16 +9,25 @@ int main () {
     int     lenDbl = 6;
     int     lenStr = 3;
     
-    
+    std::cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+    std::cout << "~~~~~~~~__CHECK_INT__~~~~~~~~" << std::endl;
+    std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" << std::endl;
 
     ::iter(intArr, lenInt, ::print);
-    std::cout << "-----------------------------" << std::endl;
+    
+    std::cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+    std::cout << "~~~~~~__CHECK_DOUBLE__~~~~~~~" << std::endl;
+    std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" << std::endl;
 
     ::iter(dblArr, lenDbl, ::print);
-    std::cout << "-----------------------------" << std::endl;
+    
+    std::cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+    std::cout << "~~~~~~~__CHECK_STRING__~~~~~~" << std::endl;
+    std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" << std::endl;
 
     ::iter(strArr, lenStr, ::print);
-    std::cout << "-----------------------------" << std::endl;
+    std::cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" << std::endl;
+
     
     return 0;
 }

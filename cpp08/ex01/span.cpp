@@ -12,6 +12,19 @@ Span::Span  ( unsigned int N ) : size(N) {
     std::cout << "Span DOP constructor was called!" << std::endl;
 }
 
+Span::Span ( const Span &other ) {    
+    operator = (other);
+}
+
+Span &Span::operator = ( const Span &other ) {
+    if (this == &other)
+		return *this;
+	this->intArr = other.intArr;
+	this->size = other.size;
+	return (*this);
+}
+
+
 void            Span::addNumber ( int number ) {
 
     if (this->intArr.size() >= this->size)

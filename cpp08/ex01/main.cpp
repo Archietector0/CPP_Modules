@@ -41,4 +41,21 @@ int main()
 	} catch (std::string ex) {
 		std::cout << ex << std::endl;
 	}
+
+	std::cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	std::cout << "~~~~~~~~~__USING_ONLY_ONE_PARAM__~~~~~~~" << std::endl;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" << std::endl;
+
+	Span onlyOne(1);
+	try {
+		std::cout << "\nLongest span: " << onlyOne.longestSpan() << std::endl;
+		std::cout << "Shortest span: " << onlyOne.shortestSpan() << std::endl;
+	} catch (std::string ex1) {
+		std::cout << ex1 << std::endl;
+	}
+
+
+
+
+
 }

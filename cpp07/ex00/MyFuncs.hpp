@@ -14,7 +14,7 @@ void    swap( TSwap &a, TSwap &b ) {
 }
 
 template <typename TMin>
-TMin    min( TMin a, TMin b ) {
+TMin    min( TMin &a, TMin &b ) {
     if (a < b)
         return a;
     else
@@ -22,7 +22,7 @@ TMin    min( TMin a, TMin b ) {
 }
 
 template <typename TMax>
-TMax    max( TMax a, TMax b ) {
+TMax    max( TMax &a, TMax &b ) {
     if (a > b)
         return a;
     else
